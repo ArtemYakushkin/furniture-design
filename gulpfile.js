@@ -87,3 +87,11 @@ exports.cleanDist = cleanDist;
 
 exports.build = series(cleanDist, images, build);
 exports.default = parallel(styles, scripts, browsersync, watching);
+
+const gulp = require('gulp');
+const ghPages = require('gulp-gh-pages');
+
+gulp.task('deploy', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghPages());
+});
